@@ -31,6 +31,16 @@ export const getServerSideProps: GetServerSideProps = async () => {
     where: { published: true },
     include: { author: true },
   })
+
+  const post = await prisma.post.findFirst()
+  if (!post) return { props: {} }
+  console.log({
+    postHasRandomProperties: Object.hasOwn(
+      post,
+      'this should not be true but it is',
+    ),
+  })
+
   return {
     props: { feed },
   }

@@ -56,13 +56,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: { id },
     include: { author: true },
   })
-  if (!post) return { props: {} }
-  console.log({
-    postHasRandomProperties: Object.hasOwn(
-      post,
-      'this should not be true but it is',
-    ),
-  })
+
   return { props: { ...post } }
 }
 
